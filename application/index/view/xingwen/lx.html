@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/js/zane.js"></script>
+    <link rel="stylesheet" href="/static/admin/css/layui.css" media="all">
+    <link rel="stylesheet" href="https://res.layui.com/layui/dist/css/modules/code.css.css">
+</head>
+
+<body>
+
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">数据查看</span>
+
+            </div>
+
+            <!-- <div class="btn"  onclick="$('.right-one').hide();$('.box-show').show();">添加数据</div> -->
+
+
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column">
+                <div class="ty-cz">
+                    <div class="ty-db-left">
+                        <button class="ty-add">
+                            <a href="{:url('news/add')}">添加作业</a>
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th style="width:10%">要求</th>
+                        <th style="width:4%">联系方式</th>
+                        <th style="width:3%">是否查看</th>
+                    </tr>
+                    {volist name='list' id="v"}
+                    <tr>
+                        <td>{$v.nr}</td>
+                        <td>{$v.qq}</td>
+                        <td>已查看</td>
+                    </tr>
+                    {/volist}
+                </table>
+
+                
+                <!-- <table id="demo" lay-filter="test"></table> -->
+            </div>
+
+            <!-- <div class="ceshi" style="width: 600px;height: 300px;position: absolute;z-index: 12312;background: yellow;">
+                <iframe src="http://127.0.0.1/admin.php/update/id/12.html" frameborder="0"></iframe>
+            </div> -->
+        </div>
+    </div>
+
+    
+
+
+
+</body>
+
+</html>

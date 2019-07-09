@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/zane.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">动态文章</span>
+            </div>
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column">
+                <div class="ty-cz">
+                    <div class="ty-db-left">
+                        <button class="ty-add">
+                            <a href="{:url('news/add')}">添加文章</a>
+                        </button>
+                    </div>
+                </div>
+                <table id="table">
+                    <tr>
+                        <th style="width:1%">ID</th>
+                        <th style="width:5%">文章标题</th>
+                        <th style="width:5%">文章摘要</th>
+                        <th style="width:3%">缩略图</th>
+                        <th style="width:3%">发布时间</th>
+                        <th style="width:1%">状态</th>
+                        <th style="width:3%">操作</th>
+                    </tr>
+                    {volist name='list' id="v"}
+                    <tr>
+                        <td>{$v.id}</td>
+                        <td>{$v.title}</td>
+                        <td>
+                            <p>{$v.abstract}</p>
+                        </td>
+                        <td>
+                            <img style="width: 63px;height: 42px;" src="/static/image/{$v.img}" alt="意美尔">
+                        </td>
+                        <td>{$v.time}</td>
+
+                        
+
+                        {eq name="$v.is_show" value="1"}
+                        <td>
+                            <a href="#" class="qy" onclick="is_show('{$v.id}')">启用</a>
+                        </td>
+                        {else/}
+                        <td>
+                            <a href="#" class="jy" onclick="is_show('{$v.id}')">禁用</a>
+                        </td>
+                        {/eq}
+                        <td>
+                            <a href="{:url('news/update',['id'=>$v['id']])}" class="xg">修改</a>
+                            <a href="javascript:void(0)" class="sc" onclick="del('{$v.id}')">删除</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script src="/static/admin/js/jquery.js"></script>>
+    <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
+    <script>
+        function del(id) {
+            layui.use('layer', function () {
+                layer.confirm('确定删除此文章么？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        type: "get",
+                        url: "{:url('/del')}",
+                        dataType: "json",
+                        data: {
+                            'id': id,
+                        },
+                        success: function (res) {
+                            window.location.reload();
+                            layer.msg(res.msg, { icon: 1 });
+                        }
+                    })
+                });
+            })
+        }
+
+        function is_detail(id) {
+            $.ajax({
+                type: "get",
+                url: "{:url('/tuijian')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        
+        function is_show(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/xianshi')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+                    
+                }
+            })
+            Time()
+           
+        }
+        function Time(){
+            setTimeout(function(){
+                window.location.reload();
+            },100);
+        }
+
+    </script>
+</body>
+
+</html>

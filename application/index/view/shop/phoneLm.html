@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/zane.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">数据管理 > 分类管理 > 手机分类</span>
+            </div>
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column">
+                <div class="ty-cz">
+                    <div class="ty-db-left">
+                        <button class="ty-add">
+                            <a href="/addPhoneFl/">添加分类</a>
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th style="width:1%">ID</th>
+                        <th style="width:5%">栏目名称</th>
+                        <th style="width:3%">更新时间</th>
+                        <th style="width:1%">状态</th>
+                        <th style="width:3%">操作</th>
+                    </tr>
+                    {volist name='data' id='data'}
+                        <tr>
+                            <td>{$data.lm_id}</td>
+                            <td>{$data.lm_name}</td>
+                            <td>{$data.time}</td>
+                        </tr>
+                    {/volist}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/admin/js/jquery.js"></script>>
+    <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
+    <script>
+        function del(id) {
+            layui.use('layer', function () {
+                layer.confirm('确定删除此文章么？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        type: "get",
+                        url: "{:url('/del')}",
+                        dataType: "json",
+                        data: {
+                            'id': id,
+                        },
+                        success: function (res) {
+                            window.location.reload();
+                            layer.msg(res.msg, { icon: 1 });
+                        }
+                    })
+                });
+            })
+        }
+
+        function is_detail(id) {
+            $.ajax({
+                type: "get",
+                url: "{:url('/tuijian')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        
+        function is_show(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/xianshi')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        function Time(){
+            setTimeout(function(){
+                window.location.reload();
+            },100);
+        }
+
+    </script>
+</body>
+
+</html>

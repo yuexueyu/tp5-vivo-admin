@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/zane.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">评论列表</span>
+            </div>
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column;padding-top: 18px">
+               
+                <table id="table" >
+                    <tr>
+                        <th style="width:2%">文章ID</th>
+                        <th style="width:20%">评论内容</th>
+                        <th style="width:1%">用户</th>
+                        <th style="width:2%">是否显示</th>
+                        <th style="width:3%">操作</th>
+                    </tr>
+
+                 
+                  
+                </table>
+            </div>
+            {$list->render()}
+
+            
+        </div>
+    </div>
+
+<script src="/static/admin/js/jquery.js"></script>
+    <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
+    <script>
+        function del(id) {
+            layui.use('layer', function () {
+                layer.confirm('确定删除此文章么？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        type: "get",
+                        url: "{:url('/del')}",
+                        dataType: "json",
+                        data: {
+                            'id': id,
+                        },
+                        success: function (res) {
+                            window.location.reload();
+                            layer.msg(res.msg, { icon: 1 });
+                        }
+                    })
+                });
+            })
+        }
+
+        function is_detail(id) {
+            $.ajax({
+                type: "get",
+                url: "{:url('/tuijian')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        
+        function is_show(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/xianshi')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        function Time(){
+            setTimeout(function(){
+                // window.location.reload();
+                $("#table").load(location.href + " #table")
+            },100);
+        }
+
+    </script>
+</body>
+
+</html>

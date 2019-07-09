@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <link rel="stylesheet" href="/static/admin/css/datepicker.css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/js/zane.js"></script>
+    <script src="/static/admin/js/datepicker.all.js"></script>
+    <script src="/static/admin/js/moment.min.js"></script>
+    <script src="/static/admin/js/time.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right box-show" style="display: block">
+            <p class="r-db">
+                <span class="r-db-left">商品管理 > 商品管理 > 手机管理</span>
+            </p>
+
+            <div class="add-box" style="padding-bottom: 65px;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {volist name='fwk_data' id='fwk'}
+                    <label class="add-list">
+                        <span>商品名称</span>
+                        <input class="title" type="text" value="{$fwk.name}" name="name" placeholder="商品名称"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>商品介绍</span>
+                        <input class="introduce" value="{$fwk.jieshao}" id="introduce" type="text" name="jieshao" placeholder="商品介绍"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>商品价格</span>
+                        <input class="introduce" value="{$fwk.price}"  id="introduce" type="text" name="price" placeholder="商品价格"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>首页展示</span>
+                        <input class="introduce" value="{$fwk.sy_zs}" id="introduce" type="text" name="syzs" placeholder="1=热卖专区 2=精品手机 3=精品配件"><br>
+                    </label>
+                    
+
+
+                    <label class="add-list">
+                        <span>缩略图</span>
+                        <input type="file" class="img" name="image" id="img">
+                    </label>
+
+                    <label class="add-list">
+                        <span>上架时间</span>
+                        <div class="c-datepicker-date-editor c-datepicker-single-editor J-datepicker-day mt10">
+                            <input type="text" class="time" autocomplete="off" name="time" placeholder="发布时间" class=" c-datepicker-data-input only-date"
+                                value="{$fwk.time}">
+                        </div>
+                    </label>
+
+
+
+                    <fieldset>
+                        <legend>图文详情</legend>
+                    </fieldset>
+                    <label class="add-list">
+                        <textarea class="article_de" name="article_de" id="content" cols="30" rows="10" style="width:100%;height: 300px;margin: auto">
+                            {$fwk.content}
+                        </textarea>
+                    </label>
+
+                    {/volist}
+
+                    <!-- <input class="add" type="submit" value="立即发布文章"> -->
+                    <div class="right-td">
+
+                        <button class="wz-btn" type="submit">编辑商品</button>
+                        <button class="qx-btn">
+                            <a href="/phone/">取消编辑</a>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/layer/3.0.1/layer.js"></script>
+    <script src="/static/utf8-php/ueditor.config.js"></script>
+    <script src="/static/utf8-php/ueditor.all.js"></script>
+    <script src="/static/admin/js/layer.js"></script>
+    <script src="/static/admin/js/layui.all.js"></script>
+    <script>
+        var ue = UE.getEditor('content');
+        layui.use('form', function () {
+            var form = layui.form;
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <link rel="stylesheet" href="/static/admin/css/datepicker.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1100595_gvmru0va40e.css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <style>
+        .sqcd{
+           font-size: 25px;
+        }
+        .sqcd2{
+            font-size: 25px;
+            transform:translate(10px, 0);
+        }
+        .home-title{
+            height: 42px;
+            line-height: 42px;
+            padding: 0 15px;
+            border-bottom: 1px solid #f6f6f6;
+            color: #333;
+            border-radius: 2px 2px 0 0;
+            font-size: 14px;
+        }
+        .home-data{
+            font-size: 36px;
+            color: #666;
+            /* line-height: 36px;
+            padding: 5px 0 10px; */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            white-space: nowrap;
+            padding: 0 15px;
+            height: 70px;
+            line-height: 70px;
+        }
+        .home-footer{
+            color: #666;
+            font-size: 14px;
+            padding: 0 15px;
+        }
+        .home-box-con{
+            height: 150px;
+            width: 25%;
+            background: white;
+            float: left;
+            margin-left: 5px;
+            margin-right: 5px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ht-title">
+        后台管理系统
+        <!-- <i class="iconfont icon-zhankaicaidan"></i> -->
+    </div>
+    <div class="admin">
+       
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+      
+        <div class="admin-right">
+                <div class="r-db">主页/系统状态</div>
+                <div class="hom-con" style="width: 99%;;margin: 20px auto ;">
+                    <div class="home-box-con">
+                        <div class="home-title">用户</div>
+                        <p class="home-data zys">{$user_length}</p>
+                        <p class="home-footer">用户数</p>
+                    </div>
+
+                    <div class="home-box-con">
+                        <div class="home-title">订单</div>
+                        <p class="home-data fls">{$user_order}</p>
+                        <p class="home-footer">订单数</p>
+                    </div>
+                    
+                    <div class="home-box-con">
+                        <div class="home-title">评论</div>
+                        <p class="home-data lys">{$user_pinglun}</p>
+                        <p class="home-footer">用户评论数</p>
+                    </div>
+                    
+                    <div class="home-box-con">
+                        <div class="home-title">商品</div>
+                        <p class="home-data gls">{$shop_length}</p>
+                        <p class="home-footer">商品总数量</p>
+                    </div>
+                </div>
+           </div>
+        </div>
+
+        
+        <!-- 加载编辑器的容器 -->
+
+    </div>
+    <script>
+         $.ajax({
+            type: "get",
+            url: "{:url('/data')}",
+            dataType: "json",
+            success: function (res) {
+                $('.zys').html(res.data.news.length)
+                $('.fls').html(res.data.feilei.length)
+                $('.lys').html(res.data.liuyan.length)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/zane.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">订单列表</span>
+            </div>
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column;padding-top: 18px">
+               
+                <table id="table" >
+                    <tr>
+                        <th style="width:2%">ID</th>
+                        <th style="width:2.5%">订单编号</th>
+                        <th style="width:3%">下单时间</th>
+                        <th style="width:4%">商品名</th>
+                        <th style="width:3%">商品图片</th>
+                        <th style="width:3%">商品价格</th>
+                        <th style="width:5%">收货地址</th>
+                        <th style="width:2%">收货人</th>
+                        <th style="width:2.5%">联系电话</th>
+                        <th style="width:2%">赠送积分</th>
+                        <th style="width:2%">操作</th>
+                    </tr>
+
+                    {volist name='list' id="v"}
+                    <tr>
+                        <td>{$v.shop_id}</td>
+                        <td>{$v.number}</td>
+                        <td>2019/12/03 5.10</td>
+                        <td>{$v.shop_name}</td>
+                        <td>
+                            <img style="width: 40px;height: 40px;" src="/static/image/{$v.shop_img}" alt="vivo">
+                        </td>
+                        <td>{$v.shop_price}</td>
+                        <td>{$v.address}</td>
+                        <td>{$v.address_name}</td>
+                        <td>{$v.address_phone}</td>
+                        <td>{$v.integral}</td>
+                        <td>
+                            <a class="sc">删除</a>
+                        </td>
+                        
+                    </tr>
+                    {/volist}
+                  
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script src="/static/admin/js/jquery.js"></script>>
+    <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
+    <script>
+        function del(id) {
+            layui.use('layer', function () {
+                layer.confirm('确定删除此文章么？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        type: "get",
+                        url: "{:url('/del')}",
+                        dataType: "json",
+                        data: {
+                            'id': id,
+                        },
+                        success: function (res) {
+                            window.location.reload();
+                            layer.msg(res.msg, { icon: 1 });
+                        }
+                    })
+                });
+            })
+        }
+
+        function is_detail(id) {
+            $.ajax({
+                type: "get",
+                url: "{:url('/tuijian')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        
+        function is_show(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/xianshi')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        function Time(){
+            setTimeout(function(){
+                // window.location.reload();
+                $("#table").load(location.href + " #table")
+            },100);
+        }
+
+    </script>
+</body>
+
+</html>

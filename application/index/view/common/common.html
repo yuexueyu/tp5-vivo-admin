@@ -1,0 +1,78 @@
+<ul>
+    <li>
+        <a href="/">后台首页</a>
+    </li>
+
+
+    <li>
+        <a href="/banner/">
+            首页轮播
+        </a>
+    </li>
+
+    <li>
+        <a href="/manage/">
+            动态管理
+        </a>
+    </li>
+
+    <li onclick="$('.sjgl').slideToggle(300)">
+        <a href="javascriprt:;">数据管理</a>
+        <ul class="e_ul sjgl">
+            <li onclick="event.stopPropagation()">
+                <a href="/user/">
+                    用户管理   
+                </a>
+            </li>
+            <li onclick="event.stopPropagation()">
+                <a href="/phone/">
+                    商品管理   
+                </a>
+            </li>
+            <li onclick="event.stopPropagation()">
+                <a href="/order/">
+                    订单管理   
+                </a>
+            </li>
+
+            <li onclick="event.stopPropagation()">
+                <a href="/pinglun/">
+                    评论管理
+                </a>
+            </li>
+
+            <li onclick="event.stopPropagation()">
+                <a href="/dizhi/">
+                    地址管理
+                </a>
+            </li>
+            <li onclick="$('.dsj').slideToggle(300);event.stopPropagation()">
+                <a href="javascriprt:;">分类管理</a> 
+                    <ul class="e_ul dsj" style="width:80%">
+                        <li>
+                            <a href="/phoneLm/">
+                                手机分类
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/phone/">
+                                配件分类    
+                            </a>
+                        </li>
+                    </ul> 
+              
+            </li>
+        </ul>
+    </li>
+
+    <li>
+        <a href="{:url('news/lx')}">
+            手机定制
+        </a>
+    </li>
+    
+
+    <li>
+        <a href="{:url('shouhou/shouhou')}">售后服务</a>
+    </li>
+</ul>

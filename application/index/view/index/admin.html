@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/admin/js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        账号：<input type="text"  name='title' class="zh" value="fwk">
+        账号：<input type="text"  name='mima' class="mima" value="mima">
+        <button type="button" class="btn">登陆</button>
+    </form>
+    <script>
+        $('.btn').click(function(){
+            $.ajax({
+                url:"{:url('/User')}",
+                type:'get',
+                dataType: "json",
+                data:{
+                    'name':$('.zh').val(),
+                    'password':$('.mima').val()
+                },
+                success:function(res){
+                    window.location.replace("http://www.jb51.net");
+                },
+                error:function(res){
+                    console.log('失败')
+                }
+            })
+        })
+       
+        
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <link rel="stylesheet" href="/static/admin/css/datepicker.css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/js/zane.js"></script>
+    <script src="/static/admin/js/datepicker.all.js"></script>
+    <script src="/static/admin/js/moment.min.js"></script>
+    <script src="/static/admin/js/time.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right box-show" style="display: block">
+            <p class="r-db">
+                <span class="r-db-left">动态管理 > 添加文章</span>
+            </p>
+
+            <div class="add-box" style="padding-bottom: 65px;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <label class="add-list">
+                        <span>标题/名称</span>
+                        <input class="title" type="text" name="title" placeholder="文章标题"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>内容/摘要</span>
+                        <input class="introduce" id="introduce" type="text" name="abstract" placeholder="摘要"><br>
+                    </label>
+
+
+                    <label class="add-list">
+                        <span>缩略图</span>
+                        <input type="file" class="img" name="image" id="img">
+                    </label>
+
+                    <label class="add-list">
+                        <span>发布时间</span>
+                        <div class="c-datepicker-date-editor c-datepicker-single-editor J-datepicker-day mt10">
+                            <input type="text" class="time" autocomplete="off" name="time" placeholder="发布时间" class=" c-datepicker-data-input only-date"
+                                value="">
+                        </div>
+                    </label>
+
+                  
+
+                    <fieldset>
+                        <legend>内容/详情</legend>
+                    </fieldset>
+                    <label class="add-list">
+                        <textarea class="article_de" name="article_de" id="content" cols="30" rows="10" style="width:100%;height: 300px;margin: auto"></textarea>
+                    </label>
+
+                    <!-- <input class="add" type="submit" value="立即发布文章"> -->
+                    <div class="right-td">
+
+                        <button class="wz-btn" type="submit">添加文章</button>
+                        <button class="qx-btn">
+                            <a href="/manage/">取消添加</a>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/layer/3.0.1/layer.js"></script>
+    <script src="/static/utf8-php/ueditor.config.js"></script>
+    <script src="/static/utf8-php/ueditor.all.js"></script>
+    <script src="/static/admin/js/layer.js"></script>
+    <script src="/static/admin/js/layui.all.js"></script>
+    <script>
+        var ue = UE.getEditor('content');
+        layui.use('form', function(){
+              var form = layui.form;
+              
+            });
+
+    </script>
+</body>
+
+</html>

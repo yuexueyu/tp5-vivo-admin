@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
+    <link rel="stylesheet" href="/static/admin/css/zane.css">
+    <script src="/static/admin/js/zane.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right right-one">
+            <div class="r-db">
+                <span class="r-db-left">商品管理 > 手机管理</span>
+            </div>
+
+            <div class="add-box" style="border:none;display: flex;flex-direction: column">
+                <div class="ty-cz">
+                    <div class="ty-db-left">
+                        <button class="ty-add">
+                            <a href="/addPhone/">添加手机</a>
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th style="width:1.5%">ID</th>
+                        <th style="width:5%">商品名称</th>
+                        <th style="width:5%">商品介绍</th>
+                        <th style="width:1.5%">商品价格</th>
+                        <th style="width:2%">商品图片</th>
+                        <th style="width:3%">上架时间</th>
+                        <th style="width:2%">首页专栏</th>
+                        <th style="width:2%">所在分类</th>
+                        <th style="width:1%">是否上架</th>
+                        <th style="width:1%">状态</th>
+                        <th style="width:3%">操作</th>
+                    </tr>
+                    {volist name='data' id='list'}
+                        <tr>
+                           <td>{$list.id}</td>
+                           <td>{$list.name}</td>
+                           <td>{$list.jieshao}</td>
+                           <td>{$list.price}</td>
+                            <td>
+                                <img style="width: 40px;height: 40px;" src="/static/image/{$list.fm_img}" alt="vivo">
+                            </td>
+                           <td>{$list.time}</td>
+                          
+                           <td>
+                                {eq name="$list.sy_zs" value="1"}
+                                    <p>热卖专区</p>
+                                {/eq}
+                                {eq name="$list.sy_zs" value="2"}
+                                    <p>精品手机</p>
+                                {/eq}
+                                {eq name="$list.sy_zs" value="3"}
+                                    <p>精品配件</p>
+                                {/eq}
+                           </td>
+                         
+                           <td>{$list.lm_name}</td>
+
+
+                           {eq name="$list.is_sj" value="1"}
+                           <td>
+                               <a href="#" class="qy" onclick="shop_shangjia('{$list.id}')">已上架</a>
+                           </td>
+                           {else/}
+                           <td>
+                               <a href="#" class="jy" onclick="shop_shangjia('{$list.id}')">未上架</a>
+                           </td>
+                           {/eq}
+                           
+                           {eq name="$list.is_show" value="1"}
+                           <td>
+                               <a href="#" class="qy" onclick="is_show('{$list.id}')">启用</a>
+                           </td>
+                           {else/}
+                           <td>
+                               <a href="#" class="jy" onclick="is_show('{$list.id}')">禁用</a>
+                           </td>
+                           {/eq}
+                            <td>
+                                <a href="{:url('shop/upPhone',['id'=>$list['id']])}" class="xg">修改</a>
+                                <a href="javascript:void(0)" class="sc" onclick="del('{$list.id}')">删除</a>
+                            </td>
+                        </tr>
+                    {/volist}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/admin/js/jquery.js"></script>>
+    <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
+    <script>
+        function del(id) {
+            layui.use('layer', function () {
+                layer.confirm('确定删除此文章么？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        type: "get",
+                        url: "{:url('/del')}",
+                        dataType: "json",
+                        data: {
+                            'id': id,
+                        },
+                        success: function (res) {
+                            window.location.reload();
+                            layer.msg(res.msg, { icon: 1 });
+                        }
+                    })
+                });
+            })
+        }
+
+        function is_detail(id) {
+            $.ajax({
+                type: "get",
+                url: "{:url('/tuijian')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        
+        function is_show(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/shop_xianshi')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        function Time(){
+            setTimeout(function(){
+                window.location.reload();
+            },100);
+        }
+
+         function shop_shangjia(id){
+            $.ajax({
+                type: "get",
+                url: "{:url('/shop_shangjia')}",
+                dataType: "json",
+                data: {
+                    'id': id,
+                },
+                success: function (res) {
+
+                }
+            })
+            Time();
+        }
+        function Time(){
+            setTimeout(function(){
+                window.location.reload();
+            },100);
+        }
+
+    </script>
+</body>
+
+</html>
