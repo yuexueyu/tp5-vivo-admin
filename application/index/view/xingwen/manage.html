@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>ueditor demo</title>
-    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
-    <link rel="stylesheet" href="/static/admin/css/zane.css">
-    <script src="/static/admin/js/zane.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__admin/css/admin_style.css">
+    <link rel="stylesheet" href="__PUBLIC__admin/css/zane.css">
+    <script src="__PUBLIC__admin/js/zane.js"></script>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                             <p>{$v.abstract}</p>
                         </td>
                         <td>
-                            <img style="width: 63px;height: 42px;" src="/static/image/{$v.img}" alt="意美尔">
+                            <img style="width: 63px;height: 42px;" src="{$v.img}" alt="意美尔">
                         </td>
                         <td>{$v.time}</td>
 
@@ -72,7 +72,7 @@
         </div>
     </div>
 
-<script src="/static/admin/js/jquery.js"></script>>
+<script src="__PUBLIC__admin/js/jquery.js"></script>>
     <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
     <script>
         function del(id) {

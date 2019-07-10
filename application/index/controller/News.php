@@ -31,10 +31,11 @@ class News extends Controller
         // dump($file);
         if($file){
             // 移动到框架应用根目录/public/uploads/image 目录下
-            $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
-          
+            // $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+            // dump($info);
             if($info){
-                $data['img']=$info->getFilename();
+                $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
             }else{
                 // 上传失败获取错误信息
                 echo $file->getError();
@@ -59,18 +60,12 @@ class News extends Controller
             $this->assign('list',$fwk_data);
         }
 
-        $data=[
-            'title'=>input('title'),
-            'abstract'=>input('abstract'),
-            'time'=>input('time'),
-            'content'=>input('nr'),
-        ];
-        $file = request()->file('image');
+        $file = request()->file('img');
         if($file){
             // 移动到框架应用根目录/public/uploads/image 目录下
-            $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
             if($info){
-                $data['img']=$info->getFilename();
+                $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
             }else{
                 // 上传失败获取错误信息
                 echo $file->getError();
@@ -78,7 +73,13 @@ class News extends Controller
         }
         if(input('title')==''){
         }else{
-            Db::name('news')->where('id',input('id')) ->update($data);
+            Db::name('news')->where('id',input('id')) ->update([
+                'title'=>input('title'),
+                'abstract'=>input('abstract'),
+                'time'=>input('time'),
+                'content'=>input('nr'),
+                'img'=>$data['img'], //图片 
+            ]);
             echo "<script>window.location.href='/manage/';</script>";
             
         }

@@ -26,26 +26,28 @@ class Shop extends Controller
             'time'=>input('time'),
             'content'=>input('article_de'),
             'sy_zs'=>input('syzs'),
+            'fm_img'=>input('fm_img'), //图片
             'is_show'=>1,
             'is_sy'=>0,
             'lm_id'=>0
         ];
 
 
-       
-        $file = request()->file('image');
-        // dump($file);
-        if($file){
-            // 移动到框架应用根目录/public/uploads/image 目录下
-            $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+        //上传图片的 ps但是由于我空间不足 我就做外链了 ～
+        // $file = request()->file('image');
+        // // dump($file);
+        // if($file){
+        //     // 移动到框架应用根目录/public/uploads/image 目录下
+        //     $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
           
-            if($info){
-                $data['fm_img']=$info->getFilename();
-            }else{
-                // 上传失败获取错误信息
-                echo $file->getError();
-            }
-        }
+        //     if($info){
+        //         $data['fm_img']=$info->getFilename();
+        //     }else{
+        //         // 上传失败获取错误信息
+        //         echo $file->getError();
+        //     }
+        // }
+
         if(input('name')==''||input('jieshao')==''||input('time')==''){
         }else{
             Db::name('shop')->insert($data);
@@ -71,19 +73,24 @@ class Shop extends Controller
             'price'=>input('price'),
             'time'=>input('time'),
             'content'=>input('article_de'),
-            'sy_zs'=>input('syzs')
+            'sy_zs'=>input('syzs'),
+            'fm_img'=>input('fm_img'), //图片
         ];
-        $file = request()->file('image');
-        if($file){
-            // 移动到框架应用根目录/public/uploads/image 目录下
-            $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
-            if($info){
-                $data['fm_img']=$info->getFilename();
-            }else{
-                // 上传失败获取错误信息
-                echo $file->getError();
-            }
-        }
+
+         //上传图片的 ps但是由于我空间不足 我就做外链了 ～
+        // $file = request()->file('image');
+        // if($file){
+        //     // 移动到框架应用根目录/public/uploads/image 目录下
+        //     $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+        //     if($info){
+        //         $data['fm_img']=$info->getFilename();
+        //     }else{
+        //         // 上传失败获取错误信息
+        //         echo $file->getError();
+        //     }
+        // }
+
+
         if(input('name')==''||input('jieshao')==''||input('price')==''){
         }else{
             Db::name('shop')->where('id',input('id')) ->update($data);

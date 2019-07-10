@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>ueditor demo</title>
-    <link rel="stylesheet" href="/static/admin/css/admin_style.css">
-    <link rel="stylesheet" href="/static/admin/css/zane.css">
-    <link rel="stylesheet" href="/static/admin/css/datepicker.css">
-    <script src="/static/admin/js/zane.js"></script>
-    <script src="/static/admin/js/jquery.js"></script>
-    <script src="/static/admin/js/zane.js"></script>
-    <script src="/static/admin/js/datepicker.all.js"></script>
-    <script src="/static/admin/js/moment.min.js"></script>
-    <script src="/static/admin/js/time.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__admin/css/admin_style.css">
+    <link rel="stylesheet" href="__PUBLIC__admin/css/zane.css">
+    <link rel="stylesheet" href="__PUBLIC__admin/css/datepicker.css">
+    <script src="__PUBLIC__admin/js/zane.js"></script>
+    <script src="__PUBLIC__admin/js/jquery.js"></script>
+    <script src="__PUBLIC__admin/js/zane.js"></script>
+    <script src="__PUBLIC__admin/js/datepicker.all.js"></script>
+    <script src="__PUBLIC__admin/js/moment.min.js"></script>
+    <script src="__PUBLIC__admin/js/time.js"></script>
 </head>
 
 <body>
@@ -41,9 +41,14 @@
                         </label>
     
     
-                        <label class="add-list">
+                        <!-- <label class="add-list">
                             <span>缩略图</span>
                             <input type="file" class="img" name="img" id="img">
+                        </label> -->
+
+                        <label class="add-list">
+                            <span>缩略图</span>
+                            <input class="img" id="img" value="{$v.img}" type="text" name="abstract" placeholder="缩略图"><br>
                         </label>
     
                         <label class="add-list">
@@ -82,8 +87,8 @@
                 
         </div>
     </div>
-    <script src="/static/utf8-php/ueditor.config.js"></script>
-    <script src="/static/utf8-php/ueditor.all.js"></script>
+    <script src="__PUBLIC__utf8-php/ueditor.config.js"></script>
+    <script src="__PUBLIC__utf8-php/ueditor.all.js"></script>
     <script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
     <script>
         var ue = UE.getEditor('content');
