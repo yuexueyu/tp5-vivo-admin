@@ -10,5 +10,5 @@ class Common extends Controller
         $lm=Db::name('classify')->select();
         $this->assign('lm',$lm);
         return $this->fetch('common/common'); //试图层
-    }
+    }       
 }

@@ -22,6 +22,7 @@ class News extends Controller
             'abstract'=>input('abstract'),
             'time'=>input('time'),
             'content'=>input('article_de'),
+            'img'=>input('img'),
             'is_show'=>1
         ];
 
@@ -29,18 +30,18 @@ class News extends Controller
        
         $file = request()->file('image');
         // dump($file);
-        if($file){
-            // 移动到框架应用根目录/public/uploads/image 目录下
-            // $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
-            $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
-            // dump($info);
-            if($info){
-                $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
-            }else{
-                // 上传失败获取错误信息
-                echo $file->getError();
-            }
-        }
+        // if($file){
+        //     // 移动到框架应用根目录/public/uploads/image 目录下
+        //     // $info=$file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+        //     $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+        //     // dump($info);
+        //     if($info){
+        //         $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
+        //     }else{
+        //         // 上传失败获取错误信息
+        //         echo $file->getError();
+        //     }
+        // }
 
         if(input('title')==''||input('article_de')==''||input('time')==''){
         }else{
@@ -60,17 +61,17 @@ class News extends Controller
             $this->assign('list',$fwk_data);
         }
 
-        $file = request()->file('img');
-        if($file){
-            // 移动到框架应用根目录/public/uploads/image 目录下
-            $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
-            if($info){
-                $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
-            }else{
-                // 上传失败获取错误信息
-                echo $file->getError();
-            }
-        }
+        // $file = request()->file('img');
+        // if($file){
+        //     // 移动到框架应用根目录/public/uploads/image 目录下
+        //     $info = $file->move(ROOT_PATH . 'public' . DS . 'static' . DS . 'image');
+        //     if($info){
+        //         $data['img']='public' . DS . 'static' . DS . 'image' . DS . $info->getSaveName();
+        //     }else{
+        //         // 上传失败获取错误信息
+        //         echo $file->getError();
+        //     }
+        // }
         if(input('title')==''){
         }else{
             Db::name('news')->where('id',input('id')) ->update([
@@ -78,7 +79,8 @@ class News extends Controller
                 'abstract'=>input('abstract'),
                 'time'=>input('time'),
                 'content'=>input('nr'),
-                'img'=>$data['img'], //图片 
+                'img'=>input('img'), //图片 
+                
             ]);
             echo "<script>window.location.href='/manage/';</script>";
             
