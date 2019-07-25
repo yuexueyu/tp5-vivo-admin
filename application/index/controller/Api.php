@@ -9,8 +9,7 @@ class Api extends Controller
     public function login(){
         header('Access-Control-Allow-Origin:*');
         $name=input('name');
-        $password=md5(input('password'));
-
+        $password=md5(input('password')); 
         $result=Db::name('user')
         ->where('name',$name)
         ->where('password', $password)

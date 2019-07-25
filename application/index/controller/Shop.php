@@ -110,7 +110,7 @@ class Shop extends Controller
     public function addPhoneFl(){
         $data=[
             'lm_name'=>input('name'),
-            'time'=>input('time')
+            'time'=>input('time'),
         ];
         if(input('name')==''||input('time')==''){
             
