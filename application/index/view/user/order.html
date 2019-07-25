@@ -52,7 +52,7 @@
                         <td>{$v.address_phone}</td>
                         <td>{$v.integral}</td>
                         <td>
-                            <a class="sc">删除</a>
+                            <a class="sc" onclick="del('{$v.number}','{$v.shop_name}')">删除</a>
                         </td>
                         
                     </tr>
@@ -66,21 +66,21 @@
 <script src="__PUBLIC__admin/js/jquery.js"></script>>
     <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
     <script>
-        function del(id) {
+        function del(number,name) {
             layui.use('layer', function () {
-                layer.confirm('确定删除此文章么？', {
+                layer.confirm('确定删除名为'+" <span style='color:red'>"+name+"</span> "+'此订单么？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     $.ajax({
                         type: "get",
-                        url: "{:url('/del')}",
+                        url: "{:url('/order_del')}",
                         dataType: "json",
                         data: {
-                            'id': id,
+                            'number': number,
                         },
                         success: function (res) {
-                            window.location.reload();
                             layer.msg(res.msg, { icon: 1 });
+                            window.location.reload();
                         }
                     })
                 });

@@ -76,4 +76,4 @@ Route::rule("shop_shangjia", "index/Api/shop_shangjia");
 Route::rule("register", "index/Api/register");
 Route::rule("login", "index/Api/login");
 
-
+Route::rule("order_del", "index/Api/order_del");

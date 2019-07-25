@@ -6,7 +6,7 @@ use think\Db;
 class Api extends Controller
 {
     //登陆
-    public function login(){
+    public function login(){ 
         header('Access-Control-Allow-Origin:*');
         $name=input('name');
         $password=md5(input('password')); 
@@ -695,5 +695,25 @@ class Api extends Controller
             ]);
         }
     }
+
+     //后台订单删除
+     public function order_del(){
+        $order_data=Db::name('user_order')->where('number',input('number'))->delete();
+        if($order_data){
+            return json([
+                'code'=>'1',
+                'msg'=>'删除成功'
+            ]);
+        }else{
+            return json([
+                'code'=>'0',
+                'msg'=>'删除失败',
+            ]);
+        }
+
+    }
+
+    
+
    
 }
