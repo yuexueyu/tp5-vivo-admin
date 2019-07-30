@@ -20,6 +20,8 @@ Route::rule("user", "user/user");
 Route::rule("order", "user/order");
 Route::rule("pinglun", "user/pinglun");
 Route::rule("dizhi", "user/dizhi");
+Route::rule("addUser", "user/addUser");
+
 
 Route::rule("xinwen", "xinwen/xinwen");
 Route::rule("manage", "news/manage");

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link rel="stylesheet" href="__PUBLIC__admin/css/admin_style.css">
+    <link rel="stylesheet" href="__PUBLIC__admin/css/zane.css">
+    <link rel="stylesheet" href="__PUBLIC__admin/css/datepicker.css">
+    <script src="__PUBLIC__admin/js/jquery.js"></script>
+    <script src="__PUBLIC__admin/js/zane.js"></script>
+    <script src="__PUBLIC__admin/js/datepicker.all.js"></script>
+    <script src="__PUBLIC__admin/js/moment.min.js"></script>
+    <script src="__PUBLIC__admin/js/time.js"></script>
+</head>
+
+<body>
+    <div class="ht-title">后台管理系统</div>
+    <div class="admin">
+        <div class="admin-left">
+            {include file='common/common'}
+        </div>
+        <div class="admin-right box-show" style="display: block">
+            <p class="r-db">
+                <span class="r-db-left">用户管理 > 添加用户</span>
+            </p>
+
+            <div class="add-box" style="padding-bottom: 65px;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <label class="add-list">
+                        <span>用户名</span>
+                        <input class="title" type="text" name="name" placeholder="用户名"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>密码</span>
+                        <input class="password" id="password" type="text" name="password" placeholder="用户密码"><br>
+                    </label>
+
+                    <label class="add-list">
+                        <span>确认密码</span>
+                        <input class="yespassword" id="yespassword" type="text" name="yespassword" placeholder="确认密码"><br>
+                    </label>
+
+                    <!-- <input class="add" type="submit" value="立即发布文章"> -->
+                    <div class="right-td">
+
+                        <button class="wz-btn" type="submit">添加用户</button>
+                        <button class="qx-btn">
+                            <a href="/user/">取消添加</a>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/layer/3.0.1/layer.js"></script>
+    <script src="__PUBLIC__utf8-php/ueditor.config.js"></script>
+    <script src="__PUBLIC__utf8-php/ueditor.all.js"></script>
+    <script src="__PUBLIC__admin/js/layer.js"></script>
+    <script src="__PUBLIC__admin/js/layui.all.js"></script>
+    <script>
+        var ue = UE.getEditor('content');
+        layui.use('form', function () {
+            var form = layui.form;
+
+        });
+
+    </script>
+</body>
+
+</html>

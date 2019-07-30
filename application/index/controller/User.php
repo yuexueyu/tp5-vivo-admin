@@ -32,4 +32,7 @@ class User extends Controller
         $this->assign('list',$news_data);
         return $this->fetch('user/dizhi'); //试图层
     }
+    public function addUser(){
+        return $this->fetch('user/addUser'); //试图层
+    }
 }
