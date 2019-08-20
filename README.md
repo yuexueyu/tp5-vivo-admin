@@ -1,7 +1,9 @@
 # About
 
 此后台是 tp5.1 + mysql 构建的后台管理系统，是后台项目[vivo-shop](https://github.com/Mynameisfwk/vivo-shop) 的管理系统，所有的数据都是从服务器实时获取的真实数据，具有真实数据等功能!
-后台地址：<del>www.kjhu.vip </del>
+后台地址：www.kuangjiahu.top 这是后台地址 ps有些数据别乱搞哦！！如果发现有些接口不能用 请换成 http://kuangjiahu.top/xxx
+
+
 
 
 # 说明
