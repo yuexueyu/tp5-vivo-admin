@@ -13,31 +13,26 @@
 use think\Route;
 
 
-
-Route::rule("/", "index/home");
-Route::rule("banner", "banner/banner");
-Route::rule("user", "user/user");
-Route::rule("order", "user/order");
-Route::rule("pinglun", "user/pinglun");
-Route::rule("dizhi", "user/dizhi");
-Route::rule("addUser", "user/addUser");
-
-
-Route::rule("xinwen", "xinwen/xinwen");
-Route::rule("manage", "news/manage");
-Route::rule("add", "news/add");
-Route::rule("update", "news/update"); //修改
-
-Route::rule("common", "common/common");
-Route::rule("xglm", "lanmu/xglm");
-
-Route::rule("phone", "shop/phone");
-Route::rule("addPhone", "shop/addPhone");
-Route::rule("upPhone", "shop/upPhone");
-Route::rule("phoneLm", "shop/phoneLm");
-Route::rule("addPhoneFl", "shop/addPhoneFl");
-
-
+Route::rule([
+    '/'=>'index/Index/home',
+    'banner'=>'index/Banner/banner',
+    'user'=>'index/User/user',
+    'order'=>'index/User/order',
+    'pinglun'=>'index/User/pinglun',
+    'dizhi'=>'index/User/dizhi',
+    // 'addUser'=>'Index/user/addUser',
+    'xinwen'=>'index/Xinwen/xinwen',
+    'manage'=>'index/News/manage',
+    'add'=>'index/News/add',
+    'update/:id'=>'index/News/update', //修改
+    'common'=>'index/Common/common',
+    'xglm'=>'index/Lanmu/xglm',
+    'phone'=>'index/Shop/phone',
+    'addPhone'=>'index/Shop/addPhone',
+    'upPhone'=>'index/Shop/upPhone',
+    'phoneLm'=>'index/Shop/phoneLm',
+    'addPhoneFl'=>'index/Shop/addPhoneFl',
+]);
 
 
 

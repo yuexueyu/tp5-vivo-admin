@@ -24,7 +24,7 @@
                 <div class="ty-cz">
                     <div class="ty-db-left">
                         <button class="ty-add">
-                            <a href="{:url('news/add')}">添加文章</a>
+                            <a href="/add/">添加文章</a>
                         </button>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         </td>
                         {/eq}
                         <td>
-                            <a href="{:url('news/update',['id'=>$v['id']])}" class="xg">修改</a>
+                            <a href="/update/{$v.id}" class="xg">修改</a>
                             <a href="javascript:void(0)" class="sc" onclick="del('{$v.id}')">删除</a>
                         </td>
                     </tr>
@@ -71,6 +71,8 @@
             </div>
         </div>
     </div>
+
+    
 
 <script src="__PUBLIC__admin/js/jquery.js"></script>>
     <script src="https://layui.hcwl520.com.cn/layui/layui.js?v=201811010202"></script>
